@@ -5,6 +5,7 @@ data "aws_db_instance" "database" {
 
 // CPU Utilization
 resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
+  count               = var.cpu_utilization_too_high_enable == true ? 1 : 0
   alarm_name          = "${var.prefix}rds-${var.db_instance_id}-highCPUUtilization"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = var.evaluation_period
@@ -24,7 +25,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "cpu_credit_balance_too_low" {
-  count               = length(regexall("(t2|t3)", data.aws_db_instance.database.db_instance_class)) > 0 ? "1" : "0"
+  count               = length(regexall("(t2|t3)", data.aws_db_instance.database.db_instance_class)) &&  > 0 && var.cpu_credit_balance_too_low_enable == true ? "1" : "0"
   alarm_name          = "${var.prefix}rds-${var.db_instance_id}-lowCPUCreditBalance"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = var.evaluation_period
@@ -45,6 +46,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_credit_balance_too_low" {
 
 // Disk Utilization
 resource "aws_cloudwatch_metric_alarm" "disk_queue_depth_too_high" {
+  count               = var.disk_queue_depth_too_high_enable == true ? 1 : 0
   alarm_name          = "${var.prefix}rds-${var.db_instance_id}-highDiskQueueDepth"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = var.evaluation_period
@@ -64,6 +66,7 @@ resource "aws_cloudwatch_metric_alarm" "disk_queue_depth_too_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "disk_free_storage_space_too_low" {
+  count               = var.disk_free_storage_space_too_low_enable == true ? 1 : 0
   alarm_name          = "${var.prefix}rds-${var.db_instance_id}-lowFreeStorageSpace"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = var.evaluation_period
@@ -83,6 +86,7 @@ resource "aws_cloudwatch_metric_alarm" "disk_free_storage_space_too_low" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "disk_burst_balance_too_low" {
+  count               = var.disk_burst_balance_too_low_enable == true ? 1 : 0
   alarm_name          = "${var.prefix}rds-${var.db_instance_id}-lowEBSBurstBalance"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = var.evaluation_period
@@ -103,6 +107,7 @@ resource "aws_cloudwatch_metric_alarm" "disk_burst_balance_too_low" {
 
 // Memory Utilization
 resource "aws_cloudwatch_metric_alarm" "memory_freeable_too_low" {
+  count               = var.memory_freeable_too_low_enable == true ? 1 : 0
   alarm_name          = "${var.prefix}rds-${var.db_instance_id}-lowFreeableMemory"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = var.evaluation_period
@@ -122,6 +127,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_freeable_too_low" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "memory_swap_usage_too_high" {
+  count               = var.memory_swap_usage_too_high_enable == true ? 1 : 0
   alarm_name          = "${var.prefix}rds-${var.db_instance_id}-highSwapUsage"
   comparison_operator = "GreaterThanThreshold"
   evaluation_periods  = var.evaluation_period
@@ -142,6 +148,7 @@ resource "aws_cloudwatch_metric_alarm" "memory_swap_usage_too_high" {
 
 // Connection Count
 resource "aws_cloudwatch_metric_alarm" "connection_count_anomalous" {
+  count               = var.connection_count_anomalous_enable == true ? 1 : 0
   alarm_name          = "${var.prefix}rds-${var.db_instance_id}-anomalousConnectionCount"
   comparison_operator = "GreaterThanUpperThreshold"
   evaluation_periods  = var.evaluation_period
