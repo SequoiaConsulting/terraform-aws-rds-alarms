@@ -90,47 +90,47 @@ variable "tags" {
 variable "cpu_utilization_too_high_enable" {
   description = "Enable alarm for the 'highCPUUtilization'"
   type = bool
-  defaut = true
+  default = true
 }
 
 variable "cpu_credit_balance_too_low_enable" {
   description = "Enable alarm for the 'lowCPUCreditBalance'"
   type = bool
-  defaut = true
+  default = true
 }
 
 variable "disk_queue_depth_too_high_enable" {
   description = "Enable alarm for the 'highDiskQueueDepth'"
   type = bool
-  defaut = true
+  default = true
 }
 
 variable "disk_free_storage_space_too_low_enable" {
   description = "Enable alarm for the 'lowFreeStorageSpace'"
   type = bool
-  defaut = true
+  default = true
 }
 
 variable "disk_burst_balance_too_low_enable" {
   description = "Enable alarm for the 'lowEBSBurstBalance'"
   type = bool
-  defaut = true
+  default = true
 }
 
 variable "memory_freeable_too_low_enable" {
   description = "Enable alarm for the 'lowFreeableMemory'"
   type = bool
-  defaut = true
+  default = true
 }
 
 variable "memory_swap_usage_too_high_enable" {
   description = "Enable alarm for the 'highSwapUsage'"
   type = bool
-  defaut = true
+  default = true
 }
 
 variable "connection_count_anomalous_enable" {
   description = "Enable alarm for the 'anomalousConnectionCount'"
   type = bool
-  defaut = true
+  default = true
 }
