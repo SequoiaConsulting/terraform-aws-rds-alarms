@@ -25,7 +25,7 @@ resource "aws_cloudwatch_metric_alarm" "cpu_utilization_too_high" {
 }
 
 resource "aws_cloudwatch_metric_alarm" "cpu_credit_balance_too_low" {
-  count               = length(regexall("(t2|t3)", data.aws_db_instance.database.db_instance_class)) &&  > 0 && var.cpu_credit_balance_too_low_enable == true ? "1" : "0"
+  count               = length(regexall("(t2|t3)", data.aws_db_instance.database.db_instance_class)) > 0 && var.cpu_credit_balance_too_low_enable == true ? "1" : "0"
   alarm_name          = "${var.prefix}rds-${var.db_instance_id}-lowCPUCreditBalance"
   comparison_operator = "LessThanThreshold"
   evaluation_periods  = var.evaluation_period
