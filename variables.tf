@@ -81,6 +81,12 @@ variable "memory_swap_usage_too_high_threshold" {
   description = "Alarm threshold for the 'highSwapUsage' alarm"
 }
 
+variable "anomaly_detection_threshold" {
+  type = number
+  default = 2
+  description = "Anomaly Detection Threshold for the band - Determines the band size"
+}
+
 variable "tags" {
   description = "A map of tags to add to the sns_topic resource"
   type        = map(string)
