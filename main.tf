@@ -153,6 +153,7 @@ resource "aws_cloudwatch_metric_alarm" "connection_count_anomalous" {
   comparison_operator = "GreaterThanUpperThreshold"
   evaluation_periods  = var.evaluation_period
   threshold_metric_id = "e1"
+  datapoints_to_alarm = var.anomaly_datapoints_to_alarm
   alarm_description   = "Anomalous database connection count detected. Something unusual is happening."
   alarm_actions       = var.actions_alarm
   ok_actions          = var.actions_ok

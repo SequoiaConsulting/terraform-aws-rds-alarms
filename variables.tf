@@ -87,6 +87,12 @@ variable "anomaly_detection_threshold" {
   description = "Anomaly Detection Threshold for the band - Determines the band size"
 }
 
+variable "anomaly_datapoints_to_alarm" {
+  type = number
+  default = 2
+  description = "Anomaly Datapoints to alarm - Determines how many evaluation points to check before going to alarm state"
+}
+
 variable "tags" {
   description = "A map of tags to add to the sns_topic resource"
   type        = map(string)
